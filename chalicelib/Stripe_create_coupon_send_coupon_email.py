@@ -6,16 +6,35 @@ import pandas as pd
 
 from datetime import datetime
 
+from chalicelib.kms_decrypto import decrypto
+
 # need to connect ot AWS private key management or Vault to retrieve this API key
 
-stripe.api_key = ""
+stripe.api_key = decrypto('STRIPE_KEY')
+
+
+def create_stripe_customer():
+    response = stripe.Customer.create(
+        description="My Second Test Customer (created for API docs)",
+        email="test@gmail.com"
+    )
+    return response
+
+
+def get_stripe_customer():
+
+    # this get all users
+    customer_dict = stripe.Customer.list()
+    print(customer_dict.data)
+    return customer_dict.data
+
 
 def get_stripe_customer_email():
 
     # this get all the email
 
     customer_dict = stripe.Customer.list(limit=1)
-
+    print(customer_dict)
     customer_email = []
 
     for i in range(len(customer_dict)):
@@ -38,13 +57,14 @@ def get_stripe_customer_id():
 
     return customer_id
 
+
 def create_coupon_for_each_stripe_customer():
 
-# manually put the customer_id like 'cus_xxxxxxx' into the following list
+    # manually put the customer_id like 'cus_xxxxxxx' into the following list
 
-# need to figure out a way to get all the active customer IDs and convert them into the lost below
+    # need to figure out a way to get all the active customer IDs and convert them into the lost below
 
-    customer_id =['cus_xxxxxxx']
+    customer_id = ['cus_xxxxxxx']
 
     for customer in customer_id:
 
@@ -85,7 +105,8 @@ def send_affiliate_coupon_email_html(email, coupon):
 
     # email tutorial: https://realpython.com/python-send-email/
 
-    import smtplib, ssl
+    import smtplib
+    import ssl
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
 
@@ -93,8 +114,8 @@ def send_affiliate_coupon_email_html(email, coupon):
     receiver_email = email
 
     # need to connect ot AWS private key management or Vault to retrieve this API key
-    
-    password = '' #'#input("Type your password and press enter:")
+
+    password = ''  # '#input("Type your password and press enter:")
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "Welcome to Moneypig Trading Affiliate Program"
@@ -195,6 +216,3 @@ Refer your friends to Moneypig Trading and we'll reward you both. Start referrin
     print('successfully send out emails')
 
     return
-
-
-create_coupon_for_each_stripe_customer()
