@@ -1,0 +1,14 @@
+{
+  "version": "2.0",
+  "app_name": "user_management",
+  "stages": {
+    "dev": {
+      "api_gateway_stage": "api",
+      "environment_variables": {
+          "AWS_LAMBDA_FUNCTION_NAME": "user_management-dev",
+          "RDS_AUTH_PWD": "AQICAHjKU7t+SIOJlg/l04N9VfyjWqN01fsECElSb45LHE9HXQFXnUSsDN25oOxdaBlgYpAeAAAAZjBkBgkqhkiG9w0BBwagVzBVAgEAMFAGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMPr0bPr6di79Cke96AgEQgCNcO4JnmvzQe877QDnTKlkN48m+ap/ae7dTlmW9mi+mib1dtw==",
+          "STRIPE_KEY": "AQICAHjKU7t+SIOJlg/l04N9VfyjWqN01fsECElSb45LHE9HXQEDOOodNRQCAuFOAxAa8eDaAAAAzjCBywYJKoZIhvcNAQcGoIG9MIG6AgEAMIG0BgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDGXzrdIlo63oXpMaSQIBEICBhrUOUfvNJVfWKBiK2PDRE9tPeoj/1yw4J8ZMikUQJLbxlDPrsXJwkjz4zHbU4GO8F2INtDCXJkq/pHmMZBR8KJiJn4FcbT152jP/QNrS1oN+MGlkzvFv7i1kB3ejrhi2XAf/zOfVK7r0llFb1tGrAonvRCLTRpKhIiKIMbghHGPQPWvss+Kh"
+      }
+    }
+  }
+}
